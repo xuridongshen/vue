@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>vue入门</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+  <div id="root">
+    <!-- 插值表达式 {{number}}  -->
+    <div @click="handleClick" :title="title">{{text}}</div>
+    <input type="text" v-model="msg">
+    <div>{{msg}}</div>
+  </div>
+
+</body>
+
+<script>
+  new Vue({
+    el: '#root',
+    data: {
+      title:'this is hello world',
+      text: 'hello world',
+      msg:'who this'
+    },
+    methods:{
+      handleClick:function(){
+        this.text = 'world'
+      }
+    }
+  })
+</script>
+
+</html>

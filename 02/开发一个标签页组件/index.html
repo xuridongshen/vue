@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <tabs-t v-model="activeKey">
+            <pane-p v-for="(Item,index) of list" :label="Item.label" :name="Item.name" :key="Item.name">
+            </pane-p>
+        </tabs-t>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./pane.js"></script>
+<script src="./tabs.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            activeKey: '1',
+            list: [{
+                    label: '标签一',
+                    name: '1'
+                },
+                {
+                    label: '标签二',
+                    name: '2'
+                },
+                {
+                    label: '标签三',
+                    name: '3'
+                }
+            ]
+        }
+    })
+</script>
+
+</html>
