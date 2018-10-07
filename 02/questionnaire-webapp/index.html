@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="main">
+
+            <div class="content" v-for="itemMsg in msg" v-if="itemMsg.show">
+                <div class="tab">
+                    {{itemMsg.title}}
+                </div>
+                <ul class="clearfix" v-if="itemMsg.id == 1">
+                    <li class="li_one" v-for="(item,index) of itemMsg.list" :key="index">
+                        <input type="radio" name="" id="" @click="handleChooseMe(index)" :checked="item.status">
+                        <label for="">{{item.sex}}</label>
+                    </li>
+                </ul>
+                <ul class="clearfix" v-else-if="itemMsg.id == 2">
+                    <li class="li_one" v-for="(item,index) of itemMsg.list"
+                    :key="index">
+                        <input type="checkbox" name="" id="" 
+                        @click="handleChooseCheckbox(index)"
+                        :checked="item.status" 
+                        >
+                        <label for="">{{item.aihao}}</label>
+                    </li>
+                </ul>
+                <ul class="clearfix" v-else-if="itemMsg.id == 3">
+                    <li class="li_three">
+                        <textarea name="" id="" cols="30" rows="10" 
+                        maxlength="200"
+                        @input="desInput"
+                        v-model="itemMsg.content"
+                        ></textarea>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer clearfix">
+                <div
+                class="footer_active" 
+                :class="{
+                    chooseMe:isChooseMe,
+                    footer_active_1:isFooter_active_1,
+                    footer_active_2:isFooter_active_2
+                }"
+                @click="handleNextUp"
+                >{{nextText}}</div>
+                <div
+                class="footer_active" 
+                :class="{
+                    footer_active_1:isFooter_active_1,
+                    footer_active_2:isFooter_active_2
+                }" 
+                v-if="prve"
+                @click="handleUpPrev"
+                >上一步</div>
+                <div 
+                class="footer_active"
+                :class="{
+                    footer_active_1:isFooter_active_1,
+                    footer_active_2:isFooter_active_2
+                }">重置</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="./index.js"></script>
+
+</html>

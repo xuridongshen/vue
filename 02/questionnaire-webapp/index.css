@@ -1,0 +1,77 @@
+[v-cloak]{
+    display: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+}
+.clearfix::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+li{
+    list-style: none;
+}
+#app{
+    height: 100%;
+    background: #f1f1f1;
+    padding:10px 5px;
+    box-sizing: border-box;
+}
+.main{
+    height: 100%;
+    background: #fff;
+    position: relative;
+}
+.content .tab{
+    padding: 15px 10px;
+}
+.content  ul{
+    padding: 0 10px;
+}
+.content  ul .li_one{
+    float: left;
+    margin-right: 15px;
+}
+.content  ul .li_one input{
+    background: #fff;
+}
+.content  ul .li_three textarea{
+    color: #ccc;
+    width: 100%;
+}
+.footer{
+    width: 100%;
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+}
+.footer .footer_active{
+    float: left;
+    height: 30px;
+    border: 1px solid #e9e9e9;
+    color: #ccc;
+    font-size: 16px;
+    text-align: center;
+    line-height: 30px;
+}
+.footer .footer_active:nth-child(1){
+    background: #f1f1f1;
+    color: #fff;
+}
+.footer .footer_active_1{
+    width: 40%;
+    margin-left: 6%;
+}
+.footer .footer_active_2{
+    width: 30%;
+    margin-left: 2%;
+}
+.footer .chooseMe{
+    background: #ccc !important;
+    color: #fff !important;
+}
