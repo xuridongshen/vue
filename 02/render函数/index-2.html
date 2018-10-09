@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ele-e></ele-e>
+    </div>
+    <script>
+        Vue.component('ele-e', {
+            render: function (createElement) {
+                var _this = this
+                return createElement('div', [
+                    createElement('input', {
+                        domProps: {
+                            value: _this.value
+                        },
+                        on: {
+                            input: function (e) {
+                                _this.value = e.target.value
+                            }
+                        }
+                    }),
+                    createElement('p', 'value:' + _this.value)
+                ])
+            },
+            data: function () {
+                return {
+                    value: ''
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>

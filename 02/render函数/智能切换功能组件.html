@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ele-e :data="data"></ele-e>
+        <button @click="change('img')">切换为图片组件</button>
+        <button @click="change('video')">切换为视频组件</button>
+        <button @click="change('text')">切换为文本组件</button>
+    </div>
+    <script>
+        var ImgItem = {
+            props: ['data'],
+            render: function (createElement) {
+                return createElement('div', [
+                    createElement('p', '图片组件'),
+                    createElement('img', {
+                        attrs: {
+                            src: this.data.url
+                        }
+                    })
+                ])
+            }
+        }
+        var VideoItem = {
+            props: ['data'],
+            render: function (createElement) {
+                return createElement('div', [
+                    createElement('p', '视频组件'),
+                    createElement('video', {
+                        attrs: {
+                            src: this.data.url,
+                            controls: 'controls',
+                            autoplay: 'autoplay'
+                        }
+                    })
+                ])
+            }
+        }
+        var TextItem = {
+            props: ['data'],
+            render: function (createElement) {
+                return createElement('div', [
+                    createElement('p', '文本组件'),
+                    createElement('p', this.data.text)
+                ])
+            }
+        }
+
+
+
+        Vue.component('ele-e', {
+            functional: true,
+            render: function (createElement, context) {
+                function getComponent() {
+                    var data = context.props.data
+                    if (data.type === 'img') return ImgItem
+                    if (data.type === 'video') return VideoItem
+                    return TextItem
+                }
+                return createElement(
+                    getComponent(), {
+                        props: {
+                            data: context.props.data
+                        }
+                    },
+                    context.children
+                )
+            },
+            props: {
+                data: {
+                    type: Object,
+                    required: true
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                data: {}
+            },
+            methods: {
+                change: function (val) {
+                    if (val === 'img') {
+                        this.data = {
+                            type: 'img',
+                            url: 'https://raw.githubusercontent.com/iview/iview/master/assets/logo.png'
+                        }
+                    } else if (val === 'video') {
+                        this.data = {
+                            type: 'video',
+                            url: 'http://vjs.zencdn.net/v/oceans.mp4'
+                        }
+                    } else if (val === 'text') {
+                        this.data = {
+                            type: 'text',
+                            text: '这是一段文本'
+                        }
+                    }
+                }
+            },
+            created:function () {
+                this.change('img')
+            }
+        })
+    </script>
+</body>
+
+</html>

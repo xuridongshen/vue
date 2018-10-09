@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ele-e :list="list"></ele-e>
+        <button @click="handleShow">显示列表</button>
+    </div>
+    <script>
+        Vue.component('ele-e', {
+            props: {
+                list: {
+                    type: Array,
+                    default: []
+                }
+            },
+            render: function (createElement) {
+                if (this.list.length) {
+                    return createElement('ul', this.list.map(function (item) {
+                        console.log(item);
+                        
+                        return createElement('li', item)
+                    }))
+                } else {
+                    return createElement('div', '列表项为空')
+                }
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                list: []
+            },
+            methods: {
+                handleShow: function () {
+                    this.list = [
+                        '奥大厦的骄傲手',
+                        '阿打算多撒多',
+                        '驱蚊器翁无群',
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
